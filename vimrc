@@ -264,7 +264,7 @@ Plug 'kana/vim-textobj-user'
 Plug 'fadein/vim-FIGlet'
 
 " Coc
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
@@ -418,59 +418,59 @@ map <LEADER>tm :TableModeToggle<CR>
 " ===
 " === coc.nvim
 " ===
-let g:coc_global_extensions = [
-      \ 'coc-json', 
-      \ 'coc-vimlsp', 
-      \'coc-docker',
-      \'coc-cmake',
-      \'coc-sh',
-      \'coc-clangd', 
-      \'coc-pyright',
-      \ 'coc-flutter-tools',
-      \ 'coc-actions',
-      \'coc-syntax',
-      \'coc-yank',
-      \'coc-translator',
-      \'coc-yaml',
-      \ 'coc-snippets',
-      \ 'coc-sourcekit',
-      \ 'coc-stylelint',
-      \ 'coc-syntax',
-      \ 'coc-lists',
-      \ 'coc-gitignore',	
-      \ 'coc-omnisharp',
-      \ 'coc-tasks',
-      \ 'coc-explorer',
-      \ 'coc-import-cost',
-      \ 'coc-vetur']
+"let g:coc_global_extensions = [
+      "\ 'coc-json', 
+      "\ 'coc-vimlsp', 
+      "\'coc-docker',
+      "\'coc-cmake',
+      "\'coc-sh',
+      "\'coc-clangd', 
+      "\'coc-pyright',
+      "\ 'coc-flutter-tools',
+      "\ 'coc-actions',
+      "\'coc-syntax',
+      "\'coc-yank',
+      "\'coc-translator',
+      "\'coc-yaml',
+      "\ 'coc-snippets',
+      "\ 'coc-sourcekit',
+      "\ 'coc-stylelint',
+      "\ 'coc-syntax',
+      "\ 'coc-lists',
+      "\ 'coc-gitignore',	
+      "\ 'coc-omnisharp',
+      "\ 'coc-tasks',
+      "\ 'coc-explorer',
+      "\ 'coc-import-cost',
+      "\ 'coc-vetur']
 
-set updatetime=100
+"set updatetime=100
 
-inoremap <silent><expr> <TAB>
-      \ coc#pum#visible() ? coc#pum#next(1) :
-      \ CheckBackspace() ? "\<Tab>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+"inoremap <silent><expr> <TAB>
+      "\ coc#pum#visible() ? coc#pum#next(1) :
+      "\ CheckBackspace() ? "\<Tab>" :
+      "\ coc#refresh()
+"inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+"inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              "\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-function! CheckBackspace() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+"function! CheckBackspace() abort
+  "let col = col('.') - 1
+  "return !col || getline('.')[col - 1]  =~# '\s'
+"endfunction
 
-inoremap <silent><expr> <c-h> coc#refresh()
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+"inoremap <silent><expr> <c-h> coc#refresh()
+"nmap <silent> [g <Plug>(coc-diagnostic-prev)
+"nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gD :tab sp<CR><Plug>(coc-definition)
-nmap <silent> gt <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nmap <leader>rn <Plug>(coc-rename)
+"nmap <silent> gd <Plug>(coc-definition)
+"nmap <silent> gD :tab sp<CR><Plug>(coc-definition)
+"nmap <silent> gt <Plug>(coc-type-definition)
+"nmap <silent> gi <Plug>(coc-implementation)
+"nmap <silent> gr <Plug>(coc-references)
+"nmap <leader>rn <Plug>(coc-rename)
 
-nnoremap <silent> M :call ShowDocumentation()<CR>
+"nnoremap <silent> M :call ShowDocumentation()<CR>
 
 "function! ShowDocumentation()
   "if CocAction('hasProvider', 'hover')
@@ -479,32 +479,32 @@ nnoremap <silent> M :call ShowDocumentation()<CR>
     "call feedkeys('M', 'in')
   "endif
 "endfunction
-function! Show_documentation()
-	call CocActionAsync('highlight')
-	if (index(['vim','help'], &filetype) >= 0)
-		execute 'h '.expand('<cword>')
-	else
-		call CocAction('doHover')
-	endif
-endfunction
+"function! Show_documentation()
+	"call CocActionAsync('highlight')
+	"if (index(['vim','help'], &filetype) >= 0)
+		"execute 'h '.expand('<cword>')
+	"else
+		"call CocAction('doHover')
+	"endif
+"endfunction
 
-function! s:cocActionsOpenFromSelected(type) abort
-  execute 'CocCommand actions.open ' . a:type
-endfunction
-" coc-translator
-nmap ts <Plugin>(coc-translator-p)
+"function! s:cocActionsOpenFromSelected(type) abort
+  "execute 'CocCommand actions.open ' . a:type
+"endfunction
+"" coc-translator
+"nmap ts <Plugin>(coc-translator-p)
 " Remap for do codeAction of selected region
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>aw  <Plug>(coc-codeaction-selected)w
-" coc-snippets
-imap <C-e> <Plug>(coc-snippets-expand)
-vmap <C-j> <Plug>(coc-snippets-select)
-let g:coc_snippet_next = '<c-j>'
-let g:coc_snippet_prev = '<c-l>'
-imap <C-j> <Plug>(coc-snippets-expand-jump)
-let g:snips_author = 'Jason lee'
+"xmap <leader>a  <Plug>(coc-codeaction-selected)
+"nmap <leader>aw  <Plug>(coc-codeaction-selected)w
+"" coc-snippets
+"imap <C-e> <Plug>(coc-snippets-expand)
+"vmap <C-j> <Plug>(coc-snippets-select)
+"let g:coc_snippet_next = '<c-j>'
+"let g:coc_snippet_prev = '<c-l>'
+"imap <C-j> <Plug>(coc-snippets-expand-jump)
+"let g:snips_author = 'Jason lee'
 
-hi CocMenuSel ctermbg=237 guibg=#d3869b
+"hi CocMenuSel ctermbg=237 guibg=#d3869b
 
 " ===
 " === Python-syntax
